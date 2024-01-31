@@ -24,4 +24,4 @@ Notes:
 - auto-return may account for various 'end of break' markers without any corresponding 'CUE-IN' ingested. 
 - all MediaLive log syntax is mutable and subject to change as improvements are introduced. You may have to update your queries in future. 
   
-![](https://github.com/robclemamzn/SCTE_Reporting_Tools/blob/main/example-Marker-Counts-chart.jpg?raw=true)
+![](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example-Marker-Counts-chart.jpg?raw=true)
