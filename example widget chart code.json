@@ -1,0 +1,18 @@
+{
+    "widgets": [
+        {
+            "height": 6,
+            "width": 23,
+            "y": 0,
+            "x": 0,
+            "type": "log",
+            "properties": {
+                "query": "SOURCE 'ElementalMediaLive' | parse channel_arn \"*:*:*:*:*:*:*\" as z1,z2,z3,REGION,ACCT,z4,CHL\n| filter CHL=12345 \n| filter @message like \"Clock=\"\n| parse @message /(?<CLK1>Clock=....{12}.....)/\n| parse CLK1 '*=*]' as z5, PROCESS\n| fields (strcontains(@message, \"IngestM2TS\") as CUESINGESTED\n| fields (strcontains(@message, \"OutputContentM2TS\") as OUTPUT_CUES_IN_RTP\n| fields (strcontains(@message, \"OutputPlaylistHLS\") as OUTPUT_CUES_IN_M3U8\n| stats sum(CUESINGESTED) as Cues_Ingested, sum(OUTPUT_CUES_IN_RTP) as Cues_Sent_RTP, sum(OUTPUT_CUES_IN_M3U8) as Cues_sent_HLS by bin (5m)",
+                "region": "us-west-2",
+                "stacked": false,
+                "title": "SCTE Marker counts by hour",
+                "view": "timeSeries"
+            }
+        }
+    ]
+}

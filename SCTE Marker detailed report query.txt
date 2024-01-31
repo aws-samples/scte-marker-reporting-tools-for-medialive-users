@@ -1,0 +1,60 @@
+## set log group to /aws/events/MediaLive
+parse @logStream "*_*_*_*_*_*_*_*" as a1,a2,a3,a4,a5,a6,@channel,@pipe
+| filter @channel like /(111111|222222|9999999)/  ## edit this line for your channel Ids
+##
+| filter @message like /(?i)(SCTE35|CUE|pause)/## Excludes
+| filter @message not like /(Current avail list|avail list contains|SyncAudio|Align avails)/
+##
+| parse @message /20..-..-.. (?<@time>.*)\./ 
+##
+| parse @message /(?<SPL1>splice_event_id=..{8}.+?)/
+| parse SPL1 '*=*' as ignore11,EVNT_ID
+##
+| parse @message /(?<STR6>AvailEventID=..{8}.+?)/
+| parse STR6 '*=*' as ignore12, AVAIL_ID
+##
+| parse @message /(?<DURATN0>duration=..{9}.+?)/
+| parse DURATN0 '*=*' as ignore13,AVAIL_DUR
+##
+| fields substr(@message,1,900) as MSG1
+| parse MSG1 /(?<TYPE1>SpliceInsertType=..{32}.]?)/
+| parse TYPE1 '*=*]' as ignore14,SPLICE_TYPE
+##
+| parse @message /(?<STR5>SplicePreroll=..{11}.+?)/
+| parse STR5 '*=*]' as ignore15,PREROLL
+##
+| parse @message /(?<STR9>AvailType=..{12}.+?)/
+| parse STR9 '*=*]' as ignore16, AVAIL_TYPE
+##
+|fields strcontains(@message, "Chapter Start") as CHP_ST
+|fields strcontains(@message, "Chapter Start") as CHP_END
+##
+|fields strcontains(@message, "Program Start") as PGM_ST
+|fields strcontains(@message, "Program Start") as PGM_END
+##
+| parse @message /(?<MARKERRAW>segmentation_type_id=.......{12})/
+| parse MARKERRAW '*=*=*]' as ignore17, ignore3322, MARKER
+##
+|fields strcontains(@message, "Opportunity Start") or strcontains(@message,"Provider Advertisement Start") or strcontains(@message,"SpliceOut") or strcontains(@message,"Starting avail") AS AVAIL_ST
+|fields strcontains(@message, "Opportunity End") or strcontains(@message,"Provider Advertisement End") or strcontains(@message,"SpliceIn") or strcontains(@message,"Ending avail") AS AVAIL_END
+##
+| parse @message /(?<CLK1>Clock=....{12}.....)/
+| parse CLK1 '*=*]' as ignore223, PROCESS  ##  input and output milestones of the marker
+##
+| parse @message /(?<PTSRAW>pts_time=.........)/
+| parse PTSRAW '*=*' as ignore18, PTS_TIME
+##
+|fields strcontains(@message, "Content Identification") as CHID
+##
+| fields substr(@message,46,120) as LOGEVENT
+##
+| fields substr(message,0,90)as MSG
+##
+| parse @message /(?<B64RAW>Base64=....{120}.+?)/
+| parse B64RAW '*=*]' as ignore20, BASE64
+##
+| fields substr(detail.eventName,0,99) as EVENT
+##
+#| filter PROCESS like "IngestM2TS"  uncomment this line to see only ingested markers
+| sort @timestamp desc
+| display @timestamp,@channel,@pipe,EVENT,MARKER, PROCESS,MSG,SPLICE_TYPE,EVNT_ID,PREROLL,AVAIL_DUR,PTS_TIME,AVAIL_ST,AVAIL_END,CHID,CHP_ST,CHP_END,PGM_ST,PGM_END,BASE64
