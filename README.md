@@ -25,3 +25,5 @@ Notes:
 - all MediaLive log syntax is mutable and subject to change as improvements are introduced. You may have to update your queries in future. 
   
 ![](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example-Marker-Counts-chart.jpg?raw=true)
+
+Find the example JSON for this chart [here](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example%20widget%20chart%20code.json)
