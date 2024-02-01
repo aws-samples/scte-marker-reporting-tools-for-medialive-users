@@ -7,7 +7,8 @@ on SCTE markers ingested and processed per hour,  in report or chart form using 
 CloudWatch Insights query to generate a detailed report of processed SCTE markers from MediaLive logs.
 Includes Avail IDs, Pre-roll times, splice types, output details and more. 
 
-Find the report [query here](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/SCTE%20Marker%20detailed%20report%20query). Just copy & paste into your CloudWatch console:
+Find the report [query here](https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/SCTE%20Marker%20detailed%20report%20query.txt?token=GHSAT0AAAAAACNDCHFHQZKUVSNC7QVIGLFEZN26BPA). Just copy & paste into your CloudWatch console.
+
 
 ![](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example_query_report.jpg?raw=true)
 - - - - - -
@@ -26,6 +27,8 @@ Notes:
   
 ![](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example-Marker-Counts-chart.jpg?raw=true)
 
-Find the example JSON for this chart with embedded query [here](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example%20widget%20chart%20code.json)
+You can quickly create a new CloudWatch dashboard with a Marker counts widget using [this script](https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/create_Scte_Marker_counts.py?token=GHSAT0AAAAAACNDCHFHODHZBA7MR5DGSSUGZN26CIA)
 
-Find the query powering this chart [here](https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/example_query_marker_counts_per_hour?token=GHSAT0AAAAAACNDCHFH4MXORNUPITTTSF74ZN253PQ)
+Example JSON for this chart with embedded query [here](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example%20widget%20chart%20code.json)
+
+For a tabular report of Marker counts, use CloudWatch query [here](https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/example_query_marker_counts_per_hour?token=GHSAT0AAAAAACNDCHFH4MXORNUPITTTSF74ZN253PQ)
