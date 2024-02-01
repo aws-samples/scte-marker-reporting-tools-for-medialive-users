@@ -27,7 +27,11 @@ Notes:
   
 ![](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example-Marker-Counts-chart.jpg?raw=true)
 
-You can quickly create a new CloudWatch dashboard with a Marker counts widget using [this script](https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/create_Scte_Marker_counts.py?token=GHSAT0AAAAAACNDCHFHODHZBA7MR5DGSSUGZN26CIA)
+You can quickly create a new CloudWatch dashboard with a Marker counts widget using this one-liner in your AWS CLI or CLoudShell prompt:
+**python3 -c "$(curl -fsSL https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/create_Scte_Marker_counts.py)"**
+
+
+Or download the script [here](https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/create_Scte_Marker_counts.py?token=GHSAT0AAAAAACNDCHFHODHZBA7MR5DGSSUGZN26CIA)
 
 Example JSON for this chart with embedded query [here](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example%20widget%20chart%20code.json)
 
