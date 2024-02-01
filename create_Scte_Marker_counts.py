@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 #  a simple CW dashboard maker for Elemental MediaLive SCTE marker counts
-#  call this script directly with command:  python3 -c "$(curl -fsSL 'https://raw.githubusercontent.com/robclemamzn/SCTE_Reporting_Tools/main/create_Scte_Marker_counts.py')" 
-
+#  call this script directly with command: python3 -c "$(curl -fsSL https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/create_Scte_Marker_counts.py)"
+#  !! NOTE:  all MediaLive log syntax is mutable and subject to change as improvements are introduced. You may have to update your queries in future.
 #
 import os
 import json
