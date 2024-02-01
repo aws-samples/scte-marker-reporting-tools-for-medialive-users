@@ -1,7 +1,7 @@
 # SCTE Reporting Tools for use with AWS Elemental MediaLive
 
-The following tools enable MediaLive users to use AWS CloudWatch to report 
-on SCTE markers ingested and processed per hour,  in report or chart form.
+The following tools enable users of AWS ELemental MediaLive to report 
+on SCTE markers ingested and processed per hour,  in report or chart form using AWS CLoudWatch logs. 
 
 ### Report: Detailed SCTE marker report
 CloudWatch Insights query to generate a detailed report of processed SCTE markers from MediaLive logs.
