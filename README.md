@@ -26,4 +26,6 @@ Notes:
   
 ![](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example-Marker-Counts-chart.jpg?raw=true)
 
-Find the example JSON for this chart [here](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example%20widget%20chart%20code.json)
+Find the example JSON for this chart with embedded query [here](https://github.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/blob/main/example%20widget%20chart%20code.json)
+
+Find the query powering this chart [here](https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/example_query_marker_counts_per_hour?token=GHSAT0AAAAAACNDCHFH4MXORNUPITTTSF74ZN253PQ)
