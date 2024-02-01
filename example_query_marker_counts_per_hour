@@ -1,0 +1,23 @@
+## count ad markers ingested versus output  on various outputs
+## note 1: A cue-out marker might have an auto-generated return (no ingested cue-in)
+## note 2: each HLS output variant receives markers.
+## NOTE 3:  logging syntax may change with future product updates; you may need to revise this search in future. 
+
+parse channel_arn "*:*:*:*:*:*:*" as ignore100,ignore101,ignore102,REGION,ACCT,ignore103,CHL
+| filter CHL =12345678  ## your channel ID - EDIT THIS 
+
+##
+| filter @message like "Clock="
+| parse @message /(?<CLK1>Clock=....{12}.....)/
+| parse CLK1 '*=*]' as ignore3, PROCESS  ##
+| filter PROCESS not like /(Encoder)/
+##
+| fields (strcontains(@message, "IngestM2TS") as CUES_INGESTED
+| fields (strcontains(@message, "OutputContentM2TS") as OUTPUT_CUES_IN_RTP
+| fields (strcontains(@message, "OutputPlaylistHLS") as OUTPUT_CUES_IN_M3U8
+## add other ingest/output types here (ESAM, OutputContentHLS etc)
+##
+| sort @timestamp asc
+
+| stats sum(CUES_INGESTED) as Num_CUES_INGESTED, sum(OUTPUT_CUES_IN_RTP) as Cues_Sent_RTP, sum(OUTPUT_CUES_IN_M3U8) as Cues_sent_HLS by bin (1hr)
+
