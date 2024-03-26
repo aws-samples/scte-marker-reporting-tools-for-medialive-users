@@ -7,6 +7,8 @@ on SCTE markers ingested and processed per hour,  in report or chart form using 
 CloudWatch Insights query to generate a detailed report of processed SCTE markers from MediaLive logs.
 Includes Avail IDs, Pre-roll times, splice types, output details and more. 
 
+Your channel will need the logging level set to INFO or DEBUG so that it sends the relevant messages to CloudWatch. 
+
 Find the report [query here](https://raw.githubusercontent.com/aws-samples/scte-marker-reporting-tools-for-medialive-users/main/SCTE%20Marker%20detailed%20report%20query.txt?token=GHSAT0AAAAAACNDCHFHQZKUVSNC7QVIGLFEZN26BPA). Just copy & paste into your CloudWatch console.
 
 
