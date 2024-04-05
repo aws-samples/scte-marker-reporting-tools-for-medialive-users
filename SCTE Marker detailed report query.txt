@@ -35,8 +35,8 @@ parse @logStream "*_*_*_*_*_*_*_*" as a1,a2,a3,a4,a5,a6,@channel,@pipe
 | parse @message /(?<MARKERRAW>segmentation_type_id=.......{12})/
 | parse MARKERRAW '*=*=*]' as ignore17, ignore3322, MARKER
 ##
-|fields strcontains(@message, "Opportunity Start") or strcontains(@message,"Provider Advertisement Start") or strcontains(@message,"SpliceOut") or strcontains(@message,"Starting avail") AS AVAIL_ST
-|fields strcontains(@message, "Opportunity End") or strcontains(@message,"Provider Advertisement End") or strcontains(@message,"SpliceIn") or strcontains(@message,"Ending avail") AS AVAIL_END
+|fields strcontains(@message, "Opportunity Start") or strcontains(@message,"Provider Advertisement Start") or strcontains(@message,"SpliceOut]") or strcontains(@message,"Starting avail") AS AVAIL_ST
+|fields strcontains(@message, "Opportunity End") or strcontains(@message,"Provider Advertisement End") or strcontains(@message,"SpliceIn]") or strcontains(@message,"Ending avail") AS AVAIL_END
 ##
 | parse @message /(?<CLK1>Clock=....{12}.....)/
 | parse CLK1 '*=*]' as ignore223, PROCESS  ##  input and output milestones of the marker
