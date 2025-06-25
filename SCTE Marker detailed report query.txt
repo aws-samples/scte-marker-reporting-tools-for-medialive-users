@@ -2,7 +2,7 @@
 parse @logStream "*_*_*_*_*_*_*_*" as a1,a2,a3,a4,a5,a6,@channel,@pipe
 | filter @channel like /(111111|222222|9999999)/  ## edit this line for your channel Ids
 ##
-| filter @message like /(?i)(SCTE35|CUE|pause)/## Excludes
+| filter @message like /(?i)(SCTE35|CUE|pause|sched)/## Excludes
 | filter @message not like /(Current avail list|avail list contains|SyncAudio|Align avails)/
 ##
 | parse @message /20..-..-.. (?<@time>.*)\./ 
@@ -57,4 +57,4 @@ parse @logStream "*_*_*_*_*_*_*_*" as a1,a2,a3,a4,a5,a6,@channel,@pipe
 ##
 #| filter PROCESS like "IngestM2TS"  uncomment this line to see only ingested markers
 | sort @timestamp desc
-| display @timestamp,@channel,@pipe,EVENT,MARKER, PROCESS,MSG,SPLICE_TYPE,EVNT_ID,PREROLL,AVAIL_DUR,PTS_TIME,AVAIL_ST,AVAIL_END,CHID,CHP_ST,CHP_END,PGM_ST,PGM_END,BASE64
+| display @timestamp,@channel,@pipe,EVENT,MARKER, PROCESS,MSG,SPLICE_TYPE,EVNT_ID,PREROLL,AVAIL_DUR,PTS_TIME,AVAIL_ST,AVAIL_END,CHID,CHP_ST,CHP_END,PGM_ST,PGM_END,BASE64,@message
