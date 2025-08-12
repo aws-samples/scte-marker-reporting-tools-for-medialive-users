@@ -55,6 +55,7 @@ parse @logStream "*_*_*_*_*_*_*_*" as a1,a2,a3,a4,a5,a6,@channel,@pipe
 ##
 | fields substr(detail.eventName,0,99) as EVENT
 ##
-#| filter PROCESS like "IngestM2TS"  uncomment this line to see only ingested markers
+#| filter PROCESS like "IngestM2TS"  ## uncomment this line to see only ingested markers
+| filter PROCESS not like "Encoder"  ## show just input+output steps
 | sort @timestamp desc
 | display @timestamp,@channel,@pipe,EVENT,MARKER, PROCESS,MSG,SPLICE_TYPE,EVNT_ID,PREROLL,AVAIL_DUR,PTS_TIME,AVAIL_ST,AVAIL_END,CHID,CHP_ST,CHP_END,PGM_ST,PGM_END,BASE64,@message
